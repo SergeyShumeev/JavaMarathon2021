@@ -16,40 +16,30 @@ import java.util.Random;
 
 public class Task2 {
     public static void main(String[] args) {
-        Random r = new Random();
-        int[] mas = new int[100];
-        int i;
-        int count;
+        Random random = new Random();
+        int[] array = new int[100];
+        int[] counter = new int[4];
 
-        for (i = 0; i < mas.length; i++){
-            mas[i] = r.nextInt(10000);
+        for (int i = 0; i < array.length; i++){
+            array[i] = random.nextInt(10000);
         }
 
-        System.out.println(Arrays.toString(mas));
+        System.out.println(Arrays.toString(array));
 
-        count = mas[0];
-        for(int mas2 : mas){
-            if (mas2 > count) count = mas2;
+        counter[0] = array[0];
+        counter[1] = array[0];
+        counter[2] = 0;
+        counter[3] = 0;
+        for(int mas2 : array){
+            if (mas2 > counter[0]) counter[0] = mas2;
+            if (mas2 < counter[1]) counter[1] = mas2;
+            if (mas2 % 10 == 0) counter[2] = counter[2] + 1;
+            if (mas2 % 10 == 0) counter[3] = counter[3] + mas2;
         }
-        System.out.println("Наибольший элемент массива: " + count);
-
-        count = mas[0];
-        for(int mas2 : mas){
-            if (mas2 < count) count = mas2;
-        }
-        System.out.println("Наименьший элемент массива: " + count);
-
-        count = 0;
-        for(int mas2 : mas){
-            if (mas2 % 10 == 0) count = count + 1;
-        }
-        System.out.println("Количество элементов массива, оканчивающихся на 0: " + count);
-
-        count = 0;
-        for(int mas2 : mas){
-            if (mas2 % 10 == 0) count = count + mas2;
-              }
-        System.out.println("Сумма элементов массива, оканчивающихся на 0: " + count);
+        System.out.println("Наибольший элемент массива: " + counter[0]);
+        System.out.println("Наименьший элемент массива: " + counter[1]);
+        System.out.println("Количество элементов массива, оканчивающихся на 0: " + counter[2]);
+        System.out.println("Сумма элементов массива, оканчивающихся на 0: " + counter[3]);
 
     }
 }
